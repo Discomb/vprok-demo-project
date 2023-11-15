@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import ru.vprok.pages.MainPage;
 import ru.vprok.pages.SearchPage;
 
-public class SearchTests {
+public class SearchTests extends TestBase {
 
     MainPage mainPage = new MainPage();
     SearchPage searchPage = new SearchPage();

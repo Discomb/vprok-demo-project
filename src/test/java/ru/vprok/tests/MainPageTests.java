@@ -45,4 +45,6 @@ public class MainPageTests extends TestBase {
                 .openPage()
                 .checkCatalogEntries(catalogEntry);
     }
+
+    // todo добавление продукта в избранное
 }
