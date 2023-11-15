@@ -30,6 +30,13 @@ public class MainPage {
         return this;
     }
 
+    public void search(String searchQuery) {
+        step("Выполняем поиск товара " + searchQuery, () -> {
+            searchInput.setValue(searchQuery);
+            searchInput.submit();
+        });
+    }
+
 //    todo вынести тестдату, пройтись циклом
     public void checkHeaderLineContents() {
         headerLogo.shouldBe(visible);
