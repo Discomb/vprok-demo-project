@@ -1,32 +1,44 @@
 package ru.vprok.pages.components;
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.WebElement;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selectors.byText;
 
 public class ProductCard {
 
-    SelenideElement
-            productPurchaseButton = $("div[class^='Purchase_root'] button"),
-            productTitle = $("a[class^='MainProductTile_title']"),
-            productPrice = $("span[class^='Price_price']");
+    private String title, price,
+            productTitle = "a[class*='Tile_title']",
+            productPrice = "span[class*='currentPrice'] span[class^='Price_price']";
 
-    WebElement baseSelector;
+    SelenideElement baseSelector;
 
-    public ProductCard setBaseSelector(WebElement selector) {
+    public ProductCard setBaseSelector(SelenideElement selector) {
         this.baseSelector = selector;
 
         return this;
     }
 
     public ProductCard addToCart() {
-        this.productPurchaseButton.click();
+        this.baseSelector.$(byText("Купить")).click();
+        this.setTitle();
+        this.setPrice();
 
         return this;
     }
 
+    private void setTitle() {
+        this.title = this.baseSelector.$(productTitle).getText();
+    }
+
+    private void setPrice() {
+        this.price = this.baseSelector.$(productPrice).getText();
+    }
+
     public String getPrice() {
-        return this.productPrice.getText();
+        return this.price;
+    }
+
+    public String getTitle() {
+        return this.title;
     }
 }

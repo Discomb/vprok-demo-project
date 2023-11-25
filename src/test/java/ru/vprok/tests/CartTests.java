@@ -2,25 +2,26 @@ package ru.vprok.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.vprok.pages.CartPage;
 import ru.vprok.pages.MainPage;
-import ru.vprok.pages.components.SelectLocationComponent;
 
 public class CartTests extends TestBase {
 
     MainPage mainPage = new MainPage();
+    CartPage cartPage = new CartPage();
 
     @Test
     @DisplayName("Проверка добавления товара в корзину")
     void cartTest() {
 
-
         mainPage
                 .openPage()
                 .closeCookies()
-                .setAddress("Высокая улица, 5к2 ", "187")
+                .setAddress("Высокая улица, 5к2", "187")
                 .addFirstProductToCart()
                 .goToCart();
-//        todo доделать тест
+
+        cartPage.checkProductInCart(mainPage.getProduct());
     }
 
 

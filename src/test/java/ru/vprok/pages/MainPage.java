@@ -12,6 +12,8 @@ import static io.qameta.allure.Allure.step;
 
 public class MainPage {
 
+    ProductCard product = new ProductCard();
+
     private final SelenideElement
             headerLogo = $("a[class^='FirstHeader_logo']"),
             headerRegion = $("div[class^='FirstHeader_region']"),
@@ -34,6 +36,10 @@ public class MainPage {
             open("");
         });
         return this;
+    }
+
+    public ProductCard getProduct() {
+        return product;
     }
 
     public void search(String searchQuery) {
@@ -62,10 +68,9 @@ public class MainPage {
     }
 
     public MainPage addFirstProductToCart() {
-        ProductCard product = new ProductCard();
 
         product
-                .setBaseSelector(productCarouselSlides.first().getWrappedElement())
+                .setBaseSelector(productCarouselSlides.first())
                 .addToCart();
 
         this.checkCartSum(product.getPrice());
