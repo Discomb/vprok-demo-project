@@ -19,6 +19,7 @@ public class SelectLocationComponent {
 
     public void setAddress(String address, String flat) {
         addressInput.setValue(address);
+        addressInput.setValue(" ");
         addressDropdown.shouldBe(visible, Duration.ofSeconds(60));
         addressDropdown.$$("li").findBy(Condition.text(address)).click();
         flatInput.setValue(flat);

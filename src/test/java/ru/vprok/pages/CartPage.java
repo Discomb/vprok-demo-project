@@ -16,21 +16,37 @@ public class CartPage {
     CartProductCard cartProduct = new CartProductCard();
 
     private final SelenideElement
-            emptyBasketLogo = $("img[src='https://cdn.vprok.ru/ssr/fbae2b110d610492fa8ec6d770fb2dc7c16766f6/_nextPublic/illustrations/empty-basket.svg']"),
+            emptyBasketLogo = $("img[src*='empty-basket.svg']"),
             emptyBasketTitle = $("h1[class*='UiErrorUnknownBase_title']"),
-            emptyBacketCatalogButton = $("div[class*='UiErrorUnknownBase_button']");
+            emptyBasketCatalogButton = $("div[class*='UiErrorUnknownBase_button']");
 
     private final ElementsCollection cartItems = $$("div[data-testid='product-item']");
 
     public void checkEmptyBasket() {
         emptyBasketLogo.shouldBe(visible);
         emptyBasketTitle.shouldHave(text("В корзине еще нет товаров"));
-        emptyBacketCatalogButton.shouldHave(text("Перейти в каталог"));
+        emptyBasketCatalogButton.shouldHave(text("Перейти в каталог"));
     }
 
-    public void checkProductInCart(ProductCard productCard) {
+    public CartPage checkProductInCart(ProductCard productCard) {
         cartProduct.setBaseSelector(cartItems.findBy(text(productCard.getTitle())));
         assertThat(cartProduct.getTitle()).isEqualTo(productCard.getTitle());
         assertThat(cartProduct.getPrice()).isEqualTo(productCard.getPrice());
+
+        return this;
+    }
+
+    public CartPage deleteProductFromCart(ProductCard productCard) {
+        cartProduct.setBaseSelector(cartItems.findBy(text(productCard.getTitle())));
+        cartProduct.getElement().hover();
+        cartProduct.deleteFromCart();
+
+        return this;
+    }
+
+    public CartPage closePopUp() {
+        $("button[class*='CrossModal_cross']").click();
+
+        return this;
     }
 }

@@ -30,4 +30,8 @@ public class CartProductCard {
         this.baseSelector.hover();
         this.deleteButton.click();
     }
+
+    public SelenideElement getElement() {
+        return this.baseSelector;
+    }
 }

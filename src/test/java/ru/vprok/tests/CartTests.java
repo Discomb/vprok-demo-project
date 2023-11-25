@@ -10,9 +10,10 @@ public class CartTests extends TestBase {
     MainPage mainPage = new MainPage();
     CartPage cartPage = new CartPage();
 
+
     @Test
     @DisplayName("Проверка добавления товара в корзину")
-    void cartTest() {
+    void addToCartTest() {
 
         mainPage
                 .openPage()
@@ -25,10 +26,22 @@ public class CartTests extends TestBase {
     }
 
 
-//
-//    @Test
-//    @DisplayName("удаление товара из корзины")
-//    void firstTest() {
-//    }
+    @Test
+    @DisplayName("удаление товара из корзины")
+    void deleteFromCartTest() {
+
+        mainPage
+                .openPage()
+                .closeCookies()
+                .setAddress("Высокая улица, 5к2", "187")
+                .addFirstProductToCart()
+                .goToCart();
+
+        cartPage
+                .checkProductInCart(mainPage.getProduct())
+                .deleteProductFromCart(mainPage.getProduct())
+                .closePopUp()
+                .checkEmptyBasket();
+    }
 
 }
