@@ -8,10 +8,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import ru.vprok.config.WebDriverProvider;
 import ru.vprok.helpers.Attach;
-
-;
+import ru.vprok.pages.CartPage;
+import ru.vprok.pages.MainPage;
+import ru.vprok.pages.SearchPage;
 
 public class TestBase {
+
+    MainPage mainPage = new MainPage();
+    SearchPage searchPage = new SearchPage();
+    CartPage cartPage = new CartPage();
+
 
     @BeforeAll
     static void beforeAll() {
@@ -20,10 +26,7 @@ public class TestBase {
 
     @BeforeEach
     void beforeEach() {
-
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-
-
     }
 
     @AfterEach

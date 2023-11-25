@@ -2,13 +2,8 @@ package ru.vprok.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.vprok.pages.CartPage;
-import ru.vprok.pages.MainPage;
 
 public class CartTests extends TestBase {
-
-    MainPage mainPage = new MainPage();
-    CartPage cartPage = new CartPage();
 
 
     @Test

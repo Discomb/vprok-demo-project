@@ -7,11 +7,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import ru.vprok.pages.CatalogEntries;
-import ru.vprok.pages.MainPage;
 
 public class MainPageTests extends TestBase {
 
-    MainPage mainPage = new MainPage();
 
     @Test
     @DisplayName("Проверка содержимого строки навигации")

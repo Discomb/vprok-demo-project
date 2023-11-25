@@ -25,7 +25,6 @@ public class WebDriverProvider {
         Configuration.browserSize = config.getBrowserSize();
         Configuration.browser = config.getBrowserName();
         Configuration.browserVersion = config.getBrowserVersion();
-//        Configuration.holdBrowserOpen = true;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.of(
