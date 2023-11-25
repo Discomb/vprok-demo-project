@@ -2,6 +2,7 @@ package ru.vprok.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import ru.vprok.pages.components.AutorizationComponent;
 import ru.vprok.pages.components.ProductCard;
 import ru.vprok.pages.components.SelectLocationComponent;
 
@@ -24,7 +25,8 @@ public class MainPage {
             cartButton = $("div[class^='Cart_cart']"),
             headerNavigationList = $("ul[class^=Navigation_list]"),
             cartSum = $("div[class^='Cart_price']"),
-            cookiesAgreeButton = $("div[class^='CookiesAlert_agreeButton']");
+            cookiesAgreeButton = $("div[class^='CookiesAlert_agreeButton']"),
+            profile = $("div[class^='Profile_profile']");
 
     private final ElementsCollection productCarouselSlides = $$("div[class^='ProductCarousel_slide']");
 
@@ -49,9 +51,10 @@ public class MainPage {
         });
     }
 
-    public MainPage closeCookies() {
-        cookiesAgreeButton.click();
-
+    public MainPage closeCookiesIfVisible() {
+        if (cookiesAgreeButton.isDisplayed()) {
+            cookiesAgreeButton.click();
+        }
         return this;
     }
 
@@ -110,5 +113,16 @@ public class MainPage {
 
     public void checkCartSum(String sum) {
         sum.equals(cartSum.getText());
+    }
+
+    public void authorizeWithWrongCode() {
+        AutorizationComponent auth = new AutorizationComponent();
+
+        profile.click();
+        auth.enterPhone("000000000");
+        auth.submit();
+        auth.enterCode("00000");
+
+        auth.checkErrorMessage();
     }
 }

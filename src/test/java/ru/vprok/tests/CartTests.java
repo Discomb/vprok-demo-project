@@ -14,10 +14,9 @@ public class CartTests extends TestBase {
     @Test
     @DisplayName("Проверка добавления товара в корзину")
     void addToCartTest() {
-
         mainPage
                 .openPage()
-                .closeCookies()
+                .closeCookiesIfVisible()
                 .setAddress("Высокая улица, 5к2", "187")
                 .addFirstProductToCart()
                 .goToCart();
@@ -29,10 +28,9 @@ public class CartTests extends TestBase {
     @Test
     @DisplayName("удаление товара из корзины")
     void deleteFromCartTest() {
-
         mainPage
                 .openPage()
-                .closeCookies()
+                .closeCookiesIfVisible()
                 .setAddress("Высокая улица, 5к2", "187")
                 .addFirstProductToCart()
                 .goToCart();

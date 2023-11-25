@@ -46,5 +46,11 @@ public class MainPageTests extends TestBase {
                 .checkCatalogEntries(catalogEntry);
     }
 
-    // todo добавление продукта в избранное
+
+    @Test
+    public void autorizationWithWrongCode() {
+        mainPage
+                .openPage()
+                .authorizeWithWrongCode();
+    }
 }
